@@ -9,7 +9,7 @@ class LessGroupPage extends StatelessWidget {
     return MaterialApp(
       title: 'StatelessWidget组件',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: Scaffold(
         appBar: AppBar(title: Text('StatelessWidget组件1'),),
