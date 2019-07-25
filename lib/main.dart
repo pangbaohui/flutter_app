@@ -10,25 +10,27 @@ import 'navigator/tab_navigator.dart';
 
 void main() => runApp(MyApp());
 
-//class MyApp extends StatelessWidget {
-//  // This widget is the root of your application.
-//  @override
-//  Widget build(BuildContext context) {
-//    return MaterialApp(
-//      title: 'Flutter Demo',
-//      theme: ThemeData(
-//        primarySwatch: Colors.blue,
-//      ),
-//      home: TabNavigator(),
-//    );
-//  }
-//}
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
-  _State createState() => _State();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: TabNavigator(),
+    );
+  }
 }
+//class MyApp extends StatefulWidget {
+//  @override
+//  _State createState() => _State();
+//}
 
-class _State extends State<MyApp> {
+//class _State extends State<MyApp> {
+
+  //网络请求
 //  String showResult = '';
 //  Future<CommonModel> fetchPost() async{
 //    final response = await http.get('http://www.devio.org/io/flutter_app/json/test_common_model.json');
@@ -36,33 +38,40 @@ class _State extends State<MyApp> {
 //    final result = convert.json.decode(utf8decoder.convert(response.bodyBytes));
 //    return CommonModel.fromJson(result);
 //  }
-  String countString = '';
-  String localCount = '';
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('future与futureBuilder'),
-        ),
-        body:Column(children: <Widget>[
-          RaisedButton(
-            onPressed: _incrementCounter,
-            child: Text('increment count'),
-          ),
-          RaisedButton(
-            onPressed: _getCounter,
-            child: Text('get count'),
-          ),
-          Text(
-            countString,
-            style: TextStyle(fontSize: 20),
-          ),
-          Text(
-            localCount,
-            style: TextStyle(fontSize: 20),
-          )
-        ],)
+
+
+//
+//  String countString = '';
+//  String localCount = '';
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//      home: Scaffold(
+//        appBar: AppBar(
+//          title: Text('future与futureBuilder'),
+//        ),
+//        body:Column(children: <Widget>[
+//          RaisedButton(
+//            onPressed: _incrementCounter,
+//            child: Text('increment count'),
+//          ),
+//          RaisedButton(
+//            onPressed: _getCounter,
+//            child: Text('get count'),
+//          ),
+//          Text(
+//            countString,
+//            style: TextStyle(fontSize: 20),
+//          ),
+//          Text(
+//            localCount,
+//            style: TextStyle(fontSize: 20),
+//          )
+//        ],)
+
+
+
+
 //        FutureBuilder<CommonModel>(
 //         future: fetchPost(),
 //         builder: (BuildContext context, AsyncSnapshot<CommonModel> snapshot){
@@ -92,6 +101,8 @@ class _State extends State<MyApp> {
 //        })
 
 
+
+
 //        Column(
 //          children: <Widget>[
 //            InkWell(
@@ -107,24 +118,27 @@ class _State extends State<MyApp> {
 //            Text(showResult)
 //          ],
 //        ),
-      ),
-    );
-  }
-  _incrementCounter() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      countString = countString + "1";
-    });
-    int counter = (prefs.getInt('counter') ?? 0) + 1;
-    await prefs.setInt('counter',counter);
-  }
-  _getCounter() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      localCount = prefs.getInt('counter').toString();
-    });
-  }
-}
+
+
+
+//      ),
+//    );
+//  }
+//  _incrementCounter() async{
+//    SharedPreferences prefs = await SharedPreferences.getInstance();
+//    setState(() {
+//      countString = countString + "1";
+//    });
+//    int counter = (prefs.getInt('counter') ?? 0) + 1;
+//    await prefs.setInt('counter',counter);
+//  }
+//  _getCounter() async{
+//    SharedPreferences prefs = await SharedPreferences.getInstance();
+//    setState(() {
+//      localCount = prefs.getInt('counter').toString();
+//    });
+//  }
+//}
 
 //class CommonModel{
 //  final String icon;

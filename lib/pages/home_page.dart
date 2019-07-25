@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app/dao/home_dao.dart';
+import 'package:flutter_app/model/home_model.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 const APPBAR_SCROLL_OFFSET = 100;
 class HomePage extends StatefulWidget{
@@ -76,6 +80,12 @@ class _HomePageState extends State<HomePage>{
     'https://dimg03.c-ctrip.com/images/fd/tg/g1/M03/7E/19/CghzfVWw6OaACaJXABqNWv6ecpw824_C_500_280_Q90.jpg'
   ];
   double appBarAlpha = 0;
+  String resultString = "";
+  @override
+  void initState(){
+    super.initState();
+    loadData();
+  }
   _onScroll(offset){
     double alpha = offset / APPBAR_SCROLL_OFFSET;
     if(alpha < 0){
@@ -86,6 +96,28 @@ class _HomePageState extends State<HomePage>{
     setState(() {
       appBarAlpha = alpha;
     });
+  }
+  loadData() async{
+//    HomeDao.fetch().then((res){
+//      setState(() {
+//        resultString = json.encode(res);
+//      });
+//    }).catchError((e){
+//      setState(() {
+//        resultString = e.toString();
+//      });
+//    });
+//  try{
+    HomeModel model = await HomeDao.fetch();
+    setState(() {
+      resultString = json.encode(model.bannerList[0].icon);
+    });
+//  }catch(e){
+//    setState(() {
+//      resultString = e.toString();
+//    });
+//  }
+
   }
   @override
   Widget build(BuildContext context) {
@@ -120,6 +152,7 @@ class _HomePageState extends State<HomePage>{
                     ),
                     Container(
                       height: 800,
+                      child: ListTile(title: Text(resultString),),
                     )
                   ],
                 ),
