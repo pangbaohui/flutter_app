@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/dao/home_dao.dart';
 import 'package:flutter_app/model/home_model.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_app/widget/grid_nav.dart';
+
 const APPBAR_SCROLL_OFFSET = 100;
 class HomePage extends StatefulWidget{
   @override
@@ -150,6 +152,7 @@ class _HomePageState extends State<HomePage>{
                         pagination: SwiperPagination(),
                       ),
                     ),
+                    GridNav(gridNavModel: null),
                     Container(
                       height: 800,
                       child: ListTile(title: Text(resultString),),
