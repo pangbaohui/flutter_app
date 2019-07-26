@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/dao/home_dao.dart';
+import 'package:flutter_app/model/common_model.dart';
 import 'package:flutter_app/model/home_model.dart';
+import 'package:flutter_app/widget/local_nav.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_app/widget/grid_nav.dart';
 
@@ -83,6 +85,7 @@ class _HomePageState extends State<HomePage>{
   ];
   double appBarAlpha = 0;
   String resultString = "";
+  List<CommonModel> localNavList = [];
   @override
   void initState(){
     super.initState();
@@ -109,21 +112,24 @@ class _HomePageState extends State<HomePage>{
 //        resultString = e.toString();
 //      });
 //    });
-//  try{
+  try{
     HomeModel model = await HomeDao.fetch();
     setState(() {
-      resultString = json.encode(model.bannerList[0].icon);
+//      resultString = json.encode(model.bannerList[0].icon);
+      localNavList = model.localNavList;
     });
-//  }catch(e){
+  }catch(e){
+    print(e);
 //    setState(() {
 //      resultString = e.toString();
 //    });
-//  }
+  }
 
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF2F2F2),
       body: Stack(
         children: <Widget>[
           MediaQuery.removePadding(
@@ -152,7 +158,8 @@ class _HomePageState extends State<HomePage>{
                         pagination: SwiperPagination(),
                       ),
                     ),
-                    GridNav(gridNavModel: null),
+                    LocalNav(localNavList:localNavList),
+//                    GridNav(gridNavModel: null),
                     Container(
                       height: 800,
                       child: ListTile(title: Text(resultString),),
