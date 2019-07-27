@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/common_model.dart';
-import 'package:flutter_app/model/grid_nav_model.dart';
 import 'package:flutter_app/widget/webview.dart';
 
 class LocalNav extends StatelessWidget{
@@ -12,7 +11,6 @@ class LocalNav extends StatelessWidget{
   Widget build(BuildContext context){
     return Container(
       height: 64,
-      margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(6)),

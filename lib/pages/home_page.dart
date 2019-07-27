@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/dao/home_dao.dart';
 import 'package:flutter_app/model/common_model.dart';
+import 'package:flutter_app/model/grid_nav_model.dart';
 import 'package:flutter_app/model/home_model.dart';
+import 'package:flutter_app/model/sales_box_model.dart';
 import 'package:flutter_app/widget/local_nav.dart';
+import 'package:flutter_app/widget/sales_box.dart';
+import 'package:flutter_app/widget/sub_nav.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_app/widget/grid_nav.dart';
 
@@ -86,6 +90,9 @@ class _HomePageState extends State<HomePage>{
   double appBarAlpha = 0;
   String resultString = "";
   List<CommonModel> localNavList = [];
+  List<CommonModel> subNavList = [];
+  GridNavModel gridNavModel;
+  SalesBoxModel salesBoxModel;
   @override
   void initState(){
     super.initState();
@@ -117,6 +124,9 @@ class _HomePageState extends State<HomePage>{
     setState(() {
 //      resultString = json.encode(model.bannerList[0].icon);
       localNavList = model.localNavList;
+      subNavList = model.subNavList;
+      gridNavModel = model.gridNav;
+      salesBoxModel = model.salesBox;
     });
   }catch(e){
     print(e);
@@ -158,10 +168,32 @@ class _HomePageState extends State<HomePage>{
                         pagination: SwiperPagination(),
                       ),
                     ),
-                    LocalNav(localNavList:localNavList),
-//                    GridNav(gridNavModel: null),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 7),
+                      child:LocalNav(localNavList:localNavList),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 7),
+                      child:GridNav(gridNavModel: gridNavModel),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 7),
+                      child:SubNav(subNavList: subNavList),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 7),
+                      child:SalesBox(salesBox: salesBoxModel),
+                    ),
+
                     Container(
-                      height: 800,
+                      height: 300,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [Color(0xffff4e63),Color(0xffff6cc9),],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight
+                          )
+                      ),
                       child: ListTile(title: Text(resultString),),
                     )
                   ],
